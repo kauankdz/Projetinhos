@@ -9,10 +9,10 @@ class calculator{
         this.currentOperation = "";
 
     }
-        //add digit to calculator screen
+        //add digit to calculator screen | adicionar dígito à tela da calculadora
     addDigit(digit) {
         console.log(digit);  
-        // check if current operations alread has a dot
+        // check if current operations alread has a dot | verifique se as operações atuais já possuem um ponto
         if(digit === "." && this.currentOperationText.innerText.includes(".")){
             return;   
              
@@ -22,19 +22,19 @@ class calculator{
         this.updateScreen();
     }
 
-        //Process all calculator operations
+        //Process all calculator operations | Processe todas as operações da calculadora
         processOperation(operation){
 
-            //check if current is empty
+            //check if current is empty | verifique se a corrente está vazia
             if(this.currentOperationText.innerText === "" && operation !== "C"){
-                    // change operation
+                    // change operation | mudança de operação
                 if(this.previousOperationText !== ""){
                   this.changeOperation(operation);
                 }
                 return;
             }
 
-            // Get current and previous value
+            // Get current and previous value | Obtenha o valor atual e anterior
             let operationValue;
             let previous = +this.previousOperationText.innerText.split(" ")[0];
             let current = +this.currentOperationText.innerText;
@@ -73,7 +73,7 @@ class calculator{
             }
         }
 
-        // Change values of the calculator screen
+        // Change values of the calculator screen | Alterar valores da tela da calculadora
     updateScreen(
         operationValue = null, 
         operation = null, 
@@ -82,22 +82,22 @@ class calculator{
     ){
        
         if(operationValue === null){
-            //  Append number to current value
+            //  Append number to current value | Anexar número ao valor atual
             this.currentOperationText.innerText += this.currentOperation;
 
         } else {
-            //check if value is zero, if it is just add current value
+            //check if value is zero, if it is just add current value | verifique se o valor é zero, se for apenas adicione o valor atual
             if(previous === 0){
                 operationValue = current;
             }
 
-            // add current calue to previous
+            // add current value to previous | adicione o valor atual ao anterior
             this.previousOperationText.innerText = `${operationValue} ${operation}`;
             this.currentOperationText.innerText = "";
         }
 
     }
-        // Change math operation
+        // Change math operation | Alterar operação matemática
        changeOperation(operation){
 
             const mathOperations = ["*", "/", "+", "-"];
@@ -109,16 +109,16 @@ class calculator{
             this.previousOperationText.innerText = 
             this.previousOperationText.innerText.slice(0, -1) + operation; 
        } 
-       // DElete this last digit
+       // DElete this last digit | Delete este último dígito
        processDelOperator(){
         this.currentOperationText.innerText = 
         this.currentOperationText.innerText.slice (0, -1);
        }
-       // Clear current operation
+       // Clear current operation | Limpar operação atual
        processClearCurrentOperator(){
             this.currentOperationText.innerText = "";
        }
-       // Clear all operations
+       // Clear all operations | Limpar todas as operações
        processClearOperator(){
         this.currentOperationText.innerText = "";
         this.previousOperationText.innerText = "";
